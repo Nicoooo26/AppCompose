@@ -16,25 +16,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun LoginScreen(navigateToCheckAccess:(username:String, password:String) -> Unit){
+fun CheckAccess(username:String?, password:String?, navigateToSearcher:(String) -> Unit){
     var text by remember { mutableStateOf("") }
-    var username by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.weight(1f))
-        Text(text="Login screen", fontSize=20.sp)
+        Text(text = "buscador screen", fontSize = 20.sp)
         Spacer(modifier = Modifier.weight(1f))
-        TextField(value = username, onValueChange = {username=it})
-        Spacer(modifier = Modifier.weight(1f))
-        TextField(value = password, onValueChange = {password=it})
-        Spacer(modifier = Modifier.weight(1f))
-
-        Spacer(modifier = Modifier.weight(1f))
-        Button (onClick={ navigateToCheckAccess(username,password) }){
-            Text("entrar")
+        TextField(value = text, onValueChange = {text=it})
+        Button(onClick = {navigateToSearcher(text)}) {
+            Text("buscar perfil")
         }
         Spacer(modifier = Modifier.weight(1f))
     }
